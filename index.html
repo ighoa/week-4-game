@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CrystalsCollectorGame</title>
+	<!-- Bootstrap File -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
+  <!-- JQuery -->
+<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+  <div class="main-container">
+
+	<div class="jumbotron">
+	  <h1>CrystalsCollector!</h1>
+	</div>
+	<div class="row">
+	  <div class="col-lg-6">
+	  	<div class="container">
+	  	  <p>You will be given a random number at the start of the game.<br><br>There are four crystals below. By cicking on a crystal you will add a specific amount of points to your total score.<br><br>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.<br><br>The value of each crystal is hidden from you until you click on it.<br><br>Each time when the game starts, the game will change the values of each crystal.</p>
+	  	</div>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-lg-3">
+	  	<div class="given"><span id="random-cg"></span></div>
+	  </div>
+	  <div class="col-lg-1">
+	  	<p>Wins:<span id="win">0</span></p><br><br>
+		<p>Losses:<span id="loss">0</span></p>
+	  </div>
+	</div>
+	<div class="row">
+
+	  <div class="btn-group btn-group-lg">
+  		<button type="button" class="btn btn-default crystal" id="cryst1">red</button>
+  		<button type="button" class="btn btn-default crystal" id="cryst2">yellow</button>
+  		<button type="button" class="btn btn-default crystal" id="cryst3">blue</button>
+  		<button type="button" class="btn btn-default crystal" id="cryst4">green</button>
+	  </div>	  	
+	</div>
+	<div class="row">
+	  <div class="col-lg-3">
+	    <p>Your total score is:</p>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-lg-3">
+	  	<div class="userscore">0</div>
+	  </div>
+	</div>
+
+<script type="text/javascript">
+	// At the start...
+$(document).ready(function(){
+
+	var randomcp; 
+	var crystal1;
+	var crystal2;
+	var crystal3;
+	var crystal4;
+	var Wins = 0;
+	var Losses = 0;
+	var Score = 0;
+
+  
+	function setValues() { 
+	
+	   randomcp = Math.floor((Math.random()) * (120 - 19)) + 19;
+	
+	 	function crystalValues() {
+
+	   		return Math.floor((Math.random()) * (12 - 1)) + 1;
+	 }
+	 crystal1 = crystalValues();
+	 crystal2 = crystalValues();
+	 crystal3 = crystalValues();
+	 crystal4 = crystalValues();
+	 
+
+	}
+	
+	setValues();
+
+	$("#random-cg").text(randomcp);
+	console.log(crystal1)
+	console.log(crystal2)
+	console.log(crystal3)
+	console.log(crystal4)
+	
+		
+	
+		$("#cryst1").click(function(){
+    	$(".userscore").text(Score);
+		Score += crystal1;
+	});
+		
+		$("#cryst2").click(function(){
+        $(".userscore").text(Score); 
+        Score += crystal2;
+    });
+
+    	$("#cryst3").click(function(){
+        $(".userscore").text(Score); 
+             
+   		 Score += crystal3;
+	
+	});
+		$("#cryst4").click(function(){
+        $(".userscore").text(Score); 
+
+		Score += crystal4;
+	});
+
+});
+	if (Score===randomcp) {
+		Wins++;
+		document.getElementById("win").innerHTML = Wins;
+	}
+
+	else if (Score>randomcp) {
+		Losses++;
+		document.getElementById("loss").innerHTML = Losses;
+	}
+
+	if (Wins===1 || Losses===1) {
+		Wins=0;
+		Losses=0;
+		Score=0;
+		document.getElementById("win").innerHTML = Wins;
+		document.getElementById("loss").innerHTML = Losses;
+	}
+
+
+	
+	
+           
+    
+
+</script>
+</body>
+</html>
+<!--The player will have to guess the answer, just like in Hangman. This time, though, the player will guess with numbers instead of letters. 
+Here's how the app works:
+There will be four crystals displayed as buttons on the page.
+The player will be shown a random number at the start of the game.
+When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+Your game will hide this amount until the player clicks a crystal.
+When they do click one, update the player's score counter.
+The player wins if their total score matches the random number from the beginning of the game.
+The player loses if their score goes above the random number.
+The game restarts whenever the player wins or loses.
+When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
+The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
+
+Option 1 Game design notes
+The random number shown at the start of the game should be between 19 - 120.
+Each crystal should have a random hidden value between 1 - 12.
