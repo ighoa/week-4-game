@@ -61,9 +61,9 @@ $(document).ready(function(){
 	var crystal2;
 	var crystal3;
 	var crystal4;
-	var Wins = 0;
-	var Losses = 0;
-	var Score = 0;
+	var wins = 0;
+	var losses = 0;
+	var score = 0;
 
   
 	function setValues() { 
@@ -93,47 +93,54 @@ $(document).ready(function(){
 		
 	
 		$("#cryst1").click(function(){
-    	$(".userscore").text(Score);
-		Score += crystal1;
+    		score += crystal1;	
+    		$(".userscore").text(score);
+		
 	});
 		
 		$("#cryst2").click(function(){
-        $(".userscore").text(Score); 
-        Score += crystal2;
+       		score += crystal2;
+        	$(".userscore").text(score); 
+        
     });
 
     	$("#cryst3").click(function(){
-        $(".userscore").text(Score); 
-             
-   		 Score += crystal3;
-	
+        score += crystal3;
+        $(".userscore").text(score); 
+     	
 	});
 		$("#cryst4").click(function(){
-        $(".userscore").text(Score); 
+        score += crystal4;
+        $(".userscore").text(score); 
 
-		Score += crystal4;
+		
 	});
 
-});
-	if (Score===randomcp) {
-		Wins++;
-		document.getElementById("win").innerHTML = Wins;
+
+	if (score===randomcp) {
+		wins++;
+		score=0;
+		$("#random-cg").text(randomcp);
+		$(".userscore").text(score);
+		$("#win").text(wins);
 	}
 
-	else if (Score>randomcp) {
-		Losses++;
-		document.getElementById("loss").innerHTML = Losses;
+	 else if (score>randomcp) {
+		losses++;
+		score=0;
+		$(".userscore").text(score);
+		$("#loss").text(losses);
 	}
-
-	if (Wins===1 || Losses===1) {
+		console.log(wins);
+	/*if (wins===1 || Losses===1) {
 		Wins=0;
 		Losses=0;
 		Score=0;
 		document.getElementById("win").innerHTML = Wins;
 		document.getElementById("loss").innerHTML = Losses;
-	}
+	}*/
 
-
+});
 	
 	
            
