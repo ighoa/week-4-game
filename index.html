@@ -119,11 +119,11 @@
 		if (score===randomcp) {
 			wins=wins+1;
 			score=0;
-			$("#random-cg").text(randomcp);
 			$(".userscore").text(score);
 			$("#win").html(wins);
 			console.log('wins', wins);
 			setValues();
+			$("#random-cg").text(randomcp);
 		}
 
 		else if (score>randomcp) {
@@ -133,6 +133,7 @@
 			$("#loss").html(losses);
 			console.log('losses',losses);
 			setValues();
+			$("#random-cg").text(randomcp);
 		}
 		}
 		
